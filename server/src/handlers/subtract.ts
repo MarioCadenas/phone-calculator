@@ -10,6 +10,11 @@ export async function subtract(input: CalculatorInput): Promise<CalculatorResult
     
     const result = input.operand1 - input.operand2;
     
+    // Handle special cases
+    if (!isFinite(result)) {
+        throw new Error('Subtraction result is not a finite number');
+    }
+    
     return {
         result,
         operation: `${input.operand1} - ${input.operand2} = ${result}`,
